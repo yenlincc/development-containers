@@ -1,2 +1,2 @@
 # development-containers
-Development container images and devcontainer.json
+Development container images and corresponding devcontainer.json
