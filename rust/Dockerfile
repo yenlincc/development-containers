@@ -1,4 +1,4 @@
-FROM ylcbase:latest
+FROM thinkthenrant/development-container-base:dev
 
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends cmake libclang-dev 
