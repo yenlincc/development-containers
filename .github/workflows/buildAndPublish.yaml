@@ -95,3 +95,21 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker_meta_ylc_rust-lang_rust.outputs.tags }}
           labels: ${{ steps.docker_meta_ylc_rust-lang_rust.outputs.labels }}
+
+      - name: Docker meta for the ylc_bottlerocket-os_bottlerocket image
+        id: docker_meta_ylc_bottlerocket-os_bottlerocket
+        uses: crazy-max/ghaction-docker-meta@v1
+        with:
+          images: thinkthenrant/development-container_bottlerocket-os_bottlerocket,ghcr.io/thinkthenrant/development-container_bottlerocket-os_bottlerocket
+          tag-sha: true
+      - name: Build and push ylc_bottlerocket-os_bottlerocket
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./projects/bottlerocket-os/bottlerocket/Dockerfile
+          platforms: linux/amd64
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.docker_meta_ylc_bottlerocket-os_bottlerocket.outputs.tags }}
+          labels: ${{ steps.docker_meta_ylc_bottlerocket-os_bottlerocket.outputs.labels }}
