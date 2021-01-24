@@ -9,3 +9,6 @@ A development environemnt for Rust projects
 
 ## projects/rust-lang/rust
 A development environment for the Rust language itself
+
+## projects/bottlerocket-os/bottlerocket
+Development environment for the Bottlerocket main repo
