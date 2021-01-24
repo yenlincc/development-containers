@@ -44,6 +44,9 @@
 		// https://code.visualstudio.com/docs/remote/containers-advanced#_persist-bash-history-between-runs
 		// keep bash history
 		"source=projectname-bashhistory,target=/commandhistory,type=volume",
+		// Get AWS creds into the container from the host
+		"source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind"
+		
 		// TODO: Figure out how to do the following optimization.
 		// since we launch a new docker instance inside the development docker, persist the Docker
 		// images in a bind-mounted volume to avoid repeatly download the same images.

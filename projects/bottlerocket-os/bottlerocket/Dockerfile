@@ -1,9 +1,8 @@
 FROM thinkthenrant/development-container-rust:dev
 
-# https://rustc-dev-guide.rust-lang.org/building/prerequisites.html
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
-    build-essential openssl libssl-dev pkg-config liblz4-tool \
+    build-essential openssl libssl-dev pkg-config liblz4-tool unzip \
     # install Docker
     && apt-get install -y apt-transport-https \
     gnupg-agent software-properties-common \
@@ -24,8 +23,9 @@ RUN ${HOME}/.cargo/bin/cargo install cargo-make \
     ## Install kubectl
     && curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
     && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
+    && rm -r kubectl \
     ## Install awscli
     && curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip" \
     && unzip awscli-bundle.zip \
     && ./awscli-bundle/install -b ~/bin/aws \
-    && rm -r aws-cli*
+    && rm -r awscli*
