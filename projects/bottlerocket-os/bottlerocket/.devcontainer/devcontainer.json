@@ -40,12 +40,13 @@
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "vscode"
 
-	// https://code.visualstudio.com/docs/remote/containers-advanced#_persist-bash-history-between-runs
-	// keep bash history
 	"mounts": [
+		// https://code.visualstudio.com/docs/remote/containers-advanced#_persist-bash-history-between-runs
+		// keep bash history
 		"source=projectname-bashhistory,target=/commandhistory,type=volume",
+		// TODO: Figure out how to do the following optimization.
 		// since we launch a new docker instance inside the development docker, persist the Docker
 		// images in a bind-mounted volume to avoid repeatly download the same images.
-		"source=${localEnv:HOME}/Documents/workspaces/bottlerocket-os/images,target=/var/lib/docker/overlay2/,type=bind"
+		// "source=${localEnv:HOME}/Documents/workspaces/bottlerocket-os/images,target=/var/lib/docker/overlay2/,type=bind"
 	]
 }
