@@ -15,20 +15,6 @@ RUN export DEBIAN_FRONTEND=noninteractive \
         stable" \
     && apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
 # dependencies needed to build Bottlerocket
-# https://github.com/bottlerocket-os/bottlerocket/blob/develop/QUICKSTART-EKS.md#dependencies
-RUN curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp \
-    # dependencies needed to test Bottlerocket with EKS:
-    ## install eksctl
-    && mv /tmp/eksctl /usr/local/bin \
-    ## Install kubectl
-    && curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
-    && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
-    && rm -r kubectl
-    ## Install awscli
-RUN curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip" \
-    && unzip awscli-bundle.zip \
-    && ./awscli-bundle/install -b ~/bin/aws \
-    && rm -r awscli*
 RUN ${HOME}/.cargo/bin/cargo install cargo-make \
     && ${HOME}/.cargo/bin/cargo install cargo-deny \
     # https://github.com/bottlerocket-os/bottlerocket/blob/develop/QUICKSTART-EKS.md#dependencies
