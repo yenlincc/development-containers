@@ -14,4 +14,4 @@ RUN export DEBIAN_FRONTEND=noninteractive \
         stable" \
     && apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
 RUN ${HOME}/.cargo/bin/cargo install cargo-make \
-    && ${HOME}/.cargo/bin/cargo install cargo-deny --version 0.8.5
+    && ${HOME}/.cargo/bin/cargo install cargo-deny
