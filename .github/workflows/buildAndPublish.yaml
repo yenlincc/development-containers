@@ -46,9 +46,9 @@ jobs:
         with:
           context: .
           file: ./base/Dockerfile
-          # platforms: linux/amd64
+          platforms: linux/amd64
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ylcbase,${{ steps.docker_meta_ylc_base.outputs.tags }}
+          tags: ${{ steps.docker_meta_ylc_base.outputs.tags }}
           labels: ${{ steps.docker_meta_ylc_base.outputs.labels }}
       - name: Inspect
         run: |
@@ -65,7 +65,7 @@ jobs:
         with:
           context: .
           file: ./rust/Dockerfile
-          # platforms: linux/amd64
+          platforms: linux/amd64
           push: ${{ github.event_name != 'pull_request' }}
-          tags: local,${{ steps.docker_meta_ylc_rust.outputs.tags }}
+          tags: ${{ steps.docker_meta_ylc_rust.outputs.tags }}
           labels: ${{ steps.docker_meta_ylc_rust.outputs.labels }}
