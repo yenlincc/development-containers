@@ -82,7 +82,7 @@ jobs:
         id: docker_meta_ylc_rust-lang_rust
         uses: crazy-max/ghaction-docker-meta@v1
         with:
-          images: thinkthenrant/development-container-rust-lang_rust,ghcr.io/thinkthenrant/development-container-rust-lang_rust
+          images: thinkthenrant/development-container_rust-lang_rust,ghcr.io/thinkthenrant/development-container_rust-lang_rust
           tag-sha: true
       - name: Build and push ylc_rust-lang_rust
         uses: docker/build-push-action@v2
