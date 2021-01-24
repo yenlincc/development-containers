@@ -4,7 +4,7 @@ Development container images and corresponding devcontainer.json
 ## essential/base
 A basic linux environment based on Ubuntu 20.04. This is the base image for the other development container iamges.
 
-## essentuil/rust
+## essential/rust
 A development environemnt for Rust projects
 
 ## projects/rust-lang/rust
