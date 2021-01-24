@@ -2,7 +2,9 @@ FROM thinkthenrant/development-container-rust:dev
 
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
-    build-essential openssl libssl-dev pkg-config liblz4-tool unzip \
+    build-essential openssl libssl-dev pkg-config liblz4-tool \
+    # these 2 needed for the installation of AWS CLI
+    unzip python3 \
     # install Docker
     && apt-get install -y apt-transport-https \
     gnupg-agent software-properties-common \
