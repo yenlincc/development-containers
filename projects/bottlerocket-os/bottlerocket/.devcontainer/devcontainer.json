@@ -2,8 +2,8 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.134.1/containers/rust
 {
 	"name": "ylc_bottlerocket-os_bottlerocket",
-	"image": "thinkthenrant/development-container_bottlerocket-os_bottlerocket:v0.0.3",
-	"runArgs": [ "--runtime=sysbox-runc" ],
+	"image": "thinkthenrant/development-container_bottlerocket-os_bottlerocket:latest",
+	"runArgs": [ "--runtime=sysbox-runc"],
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
@@ -43,6 +43,9 @@
 	// https://code.visualstudio.com/docs/remote/containers-advanced#_persist-bash-history-between-runs
 	// keep bash history
 	"mounts": [
-		"source=projectname-bashhistory,target=/commandhistory,type=volume"
+		"source=projectname-bashhistory,target=/commandhistory,type=volume",
+		// since we launch a new docker instance inside the development docker, persist the Docker
+		// images in a bind-mounted volume to avoid repeatly download the same images.
+		"source=${localEnv:HOME}/Documents/workspaces/bottlerocket-os/images,target=/var/lib/docker/overlay2/,type=bind"
 	]
 }
