@@ -1,8 +1,8 @@
 // For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.134.1/containers/rust
 {
-	"name": "ylc_rust",
-	"image": "thinkthenrant/development-container-rust:v0.0.2",
+	"name": "ylc_rust-lang_rust",
+	"image": "thinkthenrant/development-container_rust-lang_rust:v0.0.2",
 	"runArgs": [ "--runtime=sysbox-runc" ],
 
 	// Set *default* container specific settings.json values on container create.
@@ -12,7 +12,16 @@
 		// VS Code don't watch files under ./target
 		"files.watcherExclude": {
 			"**/target/**": true
-		}
+		},
+		"rust-analyzer.checkOnSave.overrideCommand": [
+			"./x.py",
+			"check",
+			"--json-output"
+		],
+		"rust-analyzer.rustfmt.overrideCommand": [
+		  "./build/TARGET_TRIPLE/stage0/bin/rustfmt"
+		],
+		"editor.formatOnSave": true
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
@@ -25,14 +34,13 @@
 		"matklad.rust-analyzer",
 		"bungcip.better-toml",
 		"vadimcn.vscode-lldb",
-		// "mutantdino.resourcemonitor"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "rustc --version",
+	"postCreateCommand": "mkdir -p ~/.git && cp src/etc/pre-commit.sh ~/.git/pre-commit",
 
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "vscode"

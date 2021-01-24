@@ -39,8 +39,8 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.THINK_THEN_RANT_CONTAINER_REGISTRY_TOKEN }}
-      
-      - name: Docker meta for the YLCBase image 
+
+      - name: Docker meta for the ylc_base image
         # https://github.com/marketplace/actions/docker-meta#keep-up-to-date-with-github-dependabot
         id: docker_meta_ylc_base
         uses: crazy-max/ghaction-docker-meta@v1
@@ -48,7 +48,7 @@ jobs:
           # list of Docker images to use as base name for tags
           images: thinkthenrant/development-container-base,ghcr.io/thinkthenrant/development-container-base
           tag-sha: true # add git short SHA as Docker tag
-      - name: Build and push the YLCBase image
+      - name: Build and push the ylc_base image
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -59,14 +59,14 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker_meta_ylc_base.outputs.tags }}
           labels: ${{ steps.docker_meta_ylc_base.outputs.labels }}
- 
-      - name: Docker meta for the YLCRust image 
+
+      - name: Docker meta for the ylc_rust image
         id: docker_meta_ylc_rust
         uses: crazy-max/ghaction-docker-meta@v1
         with:
           images: thinkthenrant/development-container-rust,ghcr.io/thinkthenrant/development-container-rust
           tag-sha: true
-      - name: Build and push YLCRust
+      - name: Build and push ylc_rust
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -77,3 +77,21 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker_meta_ylc_rust.outputs.tags }}
           labels: ${{ steps.docker_meta_ylc_rust.outputs.labels }}
+
+      - name: Docker meta for the ylc_rust-lang_rust image
+        id: docker_meta_ylc_rust-lang_rust
+        uses: crazy-max/ghaction-docker-meta@v1
+        with:
+          images: thinkthenrant/development-container-rust-lang_rust,ghcr.io/thinkthenrant/development-container-rust-lang_rust
+          tag-sha: true
+      - name: Build and push ylc_rust-lang_rust
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./projects/rust-lang/rust/Dockerfile
+          platforms: linux/amd64
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.docker_meta_ylc_rust-lang_rust.outputs.tags }}
+          labels: ${{ steps.docker_meta_ylc_rust-lang_rust.outputs.labels }}
