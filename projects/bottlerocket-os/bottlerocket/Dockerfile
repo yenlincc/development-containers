@@ -1,6 +1,7 @@
 FROM thinkthenrant/development-container-rust:dev
 
-RUN export DEBIAN_FRONTEND=noninteractive \
+RUN apt-get update \
+    && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
     build-essential openssl libssl-dev pkg-config liblz4-tool \
     # needed for the installation of AWS CLI
