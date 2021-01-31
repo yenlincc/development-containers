@@ -8,24 +8,26 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
     #
     # [Optional] Add sudo support. Omit if you don't need to install software after connecting.
-    && apt-get update \
-    && apt-get install -y sudo \
-    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
-    && chmod 0440 /etc/sudoers.d/$USERNAME
-
-# Get git, starship shell and vim installed.
-# This explains why you should not separate
-# the `apt-get update` and
-# the remaining `apt-get install commands`:
-# http://lenguyenthedat.com/docker-cache/
-RUN apt-get update \
     && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get update \
+    && apt-get -y install --no-install-recommends sudo \
+    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME \
+    # 
+    # Get git, starship shell and vim installed.
+    # This explains why you should not separate
+    # the `apt-get update` and
+    # the remaining `apt-get install commands`:
+    # http://lenguyenthedat.com/docker-cache/
     && apt-get -y install --no-install-recommends \
     vim git curl ca-certificates
-RUN curl -fsSL https://starship.rs/install.sh | bash -s -- --yes
-RUN git config --global core.editor "vim" \
+
+USER $USERNAME
+RUN curl -fsSL https://starship.rs/install.sh | bash -s -- --yes \
+    && git config --global core.editor "vim" \
     && git config --global user.email "3822365+hencrice@users.noreply.github.com" \
-    && git config --global user.name "Yenlin Chen"
-# https://code.visualstudio.com/docs/remote/containers-advanced#_persist-bash-history-between-runs
-RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
-    && echo $SNIPPET >> "/root/.bashrc" && echo 'eval "$(starship init bash)"' >> "/root/.bashrc"
+    && git config --global user.name "Yenlin Chen" \
+    #
+    # https://code.visualstudio.com/docs/remote/containers-advanced#_persist-bash-history-between-runs
+    && SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
+    && echo $SNIPPET >> "/home/$USERNAME/.bashrc" && echo 'eval "$(starship init bash)"' >> "/home/$USERNAME/.bashrc"

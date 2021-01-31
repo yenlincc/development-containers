@@ -1,9 +1,9 @@
 FROM thinkthenrant/development-container-rust:dev
 
 # https://rustc-dev-guide.rust-lang.org/building/prerequisites.html
-RUN apt-get update \
+RUN sudo apt-get update \
     && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends \
+    && sudo apt-get -y install --no-install-recommends \
     # dependency for Rustlang development
     build-essential \
     llvm \
