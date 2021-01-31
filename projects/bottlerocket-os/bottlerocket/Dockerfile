@@ -1,20 +1,19 @@
 FROM thinkthenrant/development-container-rust:dev
 
 RUN sudo apt-get update \
-    && export DEBIAN_FRONTEND=noninteractive \
-    && sudo apt-get -y install --no-install-recommends \
+    && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
     build-essential openssl libssl-dev pkg-config liblz4-tool \
     # needed for the installation of AWS CLI
     unzip python3-venv \
     # install Docker
-    && sudo apt-get install -y apt-transport-https \
+    && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https \
     gnupg-agent software-properties-common \
     && curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - \
     && add-apt-repository \
         "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
         $(lsb_release -cs) \
         stable" \
-    && sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+    && sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y docker-ce docker-ce-cli containerd.io
 # dependencies needed to build Bottlerocket
 RUN ${HOME}/.cargo/bin/cargo install cargo-make \
     && ${HOME}/.cargo/bin/cargo install cargo-deny \

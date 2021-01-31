@@ -8,9 +8,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
     #
     # [Optional] Add sudo support. Omit if you don't need to install software after connecting.
-    && export DEBIAN_FRONTEND=noninteractive \
     && apt-get update \
-    && apt-get -y install --no-install-recommends sudo \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends sudo \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME \
     # 
@@ -19,7 +18,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
     # the `apt-get update` and
     # the remaining `apt-get install commands`:
     # http://lenguyenthedat.com/docker-cache/
-    && apt-get -y install --no-install-recommends \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
     vim git curl ca-certificates
 
 USER $USERNAME
