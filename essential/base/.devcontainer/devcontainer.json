@@ -20,6 +20,8 @@
 		"redhat.vscode-yaml"
 	],
 
+	"remoteUser": "yenlinc",
+
 	// https://code.visualstudio.com/docs/remote/containers-advanced#_persist-bash-history-between-runs
 	// keep bash history
 	"mounts": [

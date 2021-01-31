@@ -38,7 +38,7 @@
 	"postCreateCommand": "echo 'dockerd > /var/log/dockerd.log 2>&1 &' >> ~/.bashrc",
 
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
-	// "remoteUser": "vscode"
+	"remoteUser": "yenlinc",
 
 	"mounts": [
 		// https://code.visualstudio.com/docs/remote/containers-advanced#_persist-bash-history-between-runs

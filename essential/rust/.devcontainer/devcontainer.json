@@ -35,7 +35,7 @@
 	"postCreateCommand": "rustc --version",
 
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
-	// "remoteUser": "vscode"
+	"remoteUser": "yenlinc",
 
 	// https://code.visualstudio.com/docs/remote/containers-advanced#_persist-bash-history-between-runs
 	// keep bash history
