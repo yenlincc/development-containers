@@ -21,14 +21,14 @@ RUN ${HOME}/.cargo/bin/cargo install cargo-make \
     # dependencies needed to test Bottlerocket with EKS:
     ## install eksctl
     && curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp \
-    && mv /tmp/eksctl /usr/local/bin \
+    && sudo mv /tmp/eksctl /usr/local/bin \
     ## Install kubectl
     && curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
-    && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
+    && sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
     && rm -r kubectl \
     ## Install awscli
     && curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip" \
     && unzip awscli-bundle.zip \
-    && ln -s /usr/bin/python3 /usr/bin/python \
+    && sudo ln -s /usr/bin/python3 /usr/bin/python \
     && ./awscli-bundle/install -b ~/bin/aws \
     && rm -r awscli*
