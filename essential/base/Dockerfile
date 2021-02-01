@@ -2,6 +2,10 @@ FROM ubuntu:20.04
 
 # https://code.visualstudio.com/docs/remote/containers-advanced#_creating-a-nonroot-user
 ARG USERNAME=yenlinc
+# https://docs.docker.com/engine/reference/builder/#env
+# ARG is not persisted in the image so need to set it as ENV so that
+# child images built from this can reference it.
+ENV USERNAME=${USERNAME}
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 RUN groupadd --gid $USER_GID $USERNAME \

@@ -34,8 +34,9 @@
 	// https://github.com/nestybox/sysbox/blob/master/docs/quickstart/dind.md#deploy-a-system-container-with-docker-inside
 	// Somehow if the dockerd is started using `postCreateCommand` instead of waiting until I get a shell,
 	// all of `docker run ......` commands end with some form of "function not implemented" error. The workaround
-	// for now is to launch it after I get to the shell, which is why I echo it into .bashrc.
-	"postCreateCommand": "echo 'dockerd > /var/log/dockerd.log 2>&1 &' >> ~/.bashrc",
+	// for now is to launch it after I get to the shell, which is why I echo it into .bashrc. Dockerd checks whether
+	// an existing dockerd is already running, so lanching multiple shell sessions won't be a problem.
+	"postCreateCommand": "echo 'sudo dockerd > /tmp/dockerd.log 2>&1 &' >> ~/.bashrc",
 
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "yenlinc",
@@ -45,11 +46,11 @@
 		// keep bash history
 		"source=projectname-bashhistory,target=/commandhistory,type=volume",
 		// Get AWS creds into the container from the host
-		"source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind"
+		"source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind",
 		
-		// TODO: Figure out how to do the following optimization.
-		// since we launch a new docker instance inside the development docker, persist the Docker
-		// images in a bind-mounted volume to avoid repeatly download the same images.
-		// "source=${localEnv:HOME}/Documents/workspaces/bottlerocket-os/images,target=/var/lib/docker/overlay2/,type=bind"
+		// https://blog.nestybox.com/2019/11/11/docker-sandbox.html
+		// Since we launch a new docker instance inside the development docker, persist the Docker
+		// images in a Docker local volume to avoid repeatly download the same images.
+		"source=inner-image-cache,target=/var/lib/docker,type=volume"
 	]
 }

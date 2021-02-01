@@ -13,7 +13,11 @@ RUN sudo apt-get update \
         "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
         $(lsb_release -cs) \
         stable" \
-    && sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y docker-ce docker-ce-cli containerd.io
+    && sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y docker-ce docker-ce-cli containerd.io \
+    # https://docs.docker.com/engine/install/linux-postinstall/
+    # ensure $USERNAME (set in the essential/base/Dockerfile)
+    # can connect to docker socket
+    && sudo usermod -aG docker $USERNAME
 # dependencies needed to build Bottlerocket
 RUN ${HOME}/.cargo/bin/cargo install cargo-make \
     && ${HOME}/.cargo/bin/cargo install cargo-deny \
