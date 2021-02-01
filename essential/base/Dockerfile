@@ -29,7 +29,7 @@ RUN curl -fsSL https://starship.rs/install.sh | bash -s -- --yes \
     #
     # https://code.visualstudio.com/docs/remote/containers-advanced#_persist-bash-history-between-runs
     && SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
-    && mkdir /commandhistory \
-    && touch /commandhistory/.bash_history \
-    && chown -R $USERNAME /commandhistory \
+    && sudo mkdir /commandhistory \
+    && sudo touch /commandhistory/.bash_history \
+    && sudo chown -R $USERNAME /commandhistory \
     && echo $SNIPPET >> "/home/$USERNAME/.bashrc"
