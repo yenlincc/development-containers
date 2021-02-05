@@ -14,6 +14,7 @@
 	"extensions": [
 		"alefragnani.bookmarks",
 		"eamodio.gitlens",
+		"mhutchie.git-graph",
 		"christian-kohler.path-intellisense",
 		"mohsen1.prettify-json",
 		"gruntfuggly.todo-tree",
