@@ -6,7 +6,7 @@ RUN sudo apt-get update \
     # needed by the nodejs installer
     gnupg \
     && curl -sL https://deb.nodesource.com/setup_14.x  | bash - \
-    && apt-get -y install nodejs \
+    && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends nodejs \
     && node -v && npm -v \
     && npm install -g aws-cdk \
     && cdk --version
