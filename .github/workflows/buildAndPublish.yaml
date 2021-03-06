@@ -95,6 +95,24 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker_meta_ylc_go.outputs.tags }}
           labels: ${{ steps.docker_meta_ylc_go.outputs.labels }}
+      
+      - name: Docker meta for the ylc_cdk-go image
+        id: docker_meta_ylc_cdk-go
+        uses: crazy-max/ghaction-docker-meta@v1
+        with:
+          images: thinkthenrant/development-container_cdk-go,ghcr.io/thinkthenrant/development-container_cdk-go
+          tag-sha: true
+      - name: Build and push ylc_cdk-go
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./projects/cdk-go/Dockerfile
+          platforms: linux/amd64
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.docker_meta_ylc_cdk-go.outputs.tags }}
+          labels: ${{ steps.docker_meta_ylc_cdk-go.outputs.labels }}
 
       - name: Docker meta for the ylc_rust-lang_rust image
         id: docker_meta_ylc_rust-lang_rust
@@ -131,21 +149,3 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker_meta_ylc_bottlerocket-os_bottlerocket.outputs.tags }}
           labels: ${{ steps.docker_meta_ylc_bottlerocket-os_bottlerocket.outputs.labels }}
-
-      - name: Docker meta for the ylc_cdk-go image
-        id: docker_meta_ylc_cdk-go
-        uses: crazy-max/ghaction-docker-meta@v1
-        with:
-          images: thinkthenrant/development-container_cdk-go,ghcr.io/thinkthenrant/development-container_cdk-go
-          tag-sha: true
-      - name: Build and push ylc_cdk-go
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./projects/cdk-go/Dockerfile
-          platforms: linux/amd64
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.docker_meta_ylc_cdk-go.outputs.tags }}
-          labels: ${{ steps.docker_meta_ylc_cdk-go.outputs.labels }}
