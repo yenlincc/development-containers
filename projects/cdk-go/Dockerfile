@@ -1,21 +1,12 @@
 FROM thinkthenrant/development-container-go:dev
 
 # https://rustc-dev-guide.rust-lang.org/building/prerequisites.html
-# RUN sudo apt-get update \
-#     && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
-#     # needed by the nodejs installer
-#     gnupg \
-#     && sudo DEBIAN_FRONTEND=noninteractive curl -sL https://deb.nodesource.com/setup_14.x  | bash - \
-#     && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends nodejs \
-#     && node -v && npm -v \
-#     && sudo npm install -g aws-cdk \
-#     && cdk --version
-RUN sudo apt-get update
-RUN sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
+RUN sudo apt-get update \
+    && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
     # needed by the nodejs installer
-    gnupg
-RUN sudo DEBIAN_FRONTEND=noninteractive curl -sL https://deb.nodesource.com/setup_14.x  | bash -
-RUN sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends nodejs
-RUN node -v && npm -v \
+    gnupg \
+    && sudo DEBIAN_FRONTEND=noninteractive curl -sL https://deb.nodesource.com/setup_14.x  | sudo DEBIAN_FRONTEND=noninteractive bash - \
+    && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends nodejs \
+    && node -v && npm -v \
     && sudo npm install -g aws-cdk \
     && cdk --version
