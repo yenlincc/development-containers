@@ -5,17 +5,17 @@ FROM thinkthenrant/development-container-go:dev
 #     && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
 #     # needed by the nodejs installer
 #     gnupg \
-#     && curl -sL https://deb.nodesource.com/setup_14.x  | bash - \
+#     && sudo DEBIAN_FRONTEND=noninteractive curl -sL https://deb.nodesource.com/setup_14.x  | bash - \
 #     && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends nodejs \
 #     && node -v && npm -v \
 #     && sudo npm install -g aws-cdk \
 #     && cdk --version
-RUN sudo apt-get update \
-    && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
+RUN sudo apt-get update
+RUN sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
     # needed by the nodejs installer
-    gnupg \
-    && sudo DEBIAN_FRONTEND=noninteractive curl -sL https://deb.nodesource.com/setup_14.x  | bash - \
-    && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends nodejs \
-    && node -v && npm -v \
+    gnupg
+RUN sudo DEBIAN_FRONTEND=noninteractive curl -sL https://deb.nodesource.com/setup_14.x  | bash -
+RUN sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends nodejs
+RUN node -v && npm -v \
     && sudo npm install -g aws-cdk \
     && cdk --version
