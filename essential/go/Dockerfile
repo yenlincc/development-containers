@@ -10,7 +10,6 @@ RUN sudo wget https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
     sudo tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz && \
     sudo rm go${GO_VERSION}.linux-amd64.tar.gz && \
     go install github.com/ramya-rao-a/go-outline@latest && \
-    go install github.com/cweill/gotests@v1 && \
     go install github.com/fatih/gomodifytags@v1 && \
     go install github.com/josharian/impl@v1 && \
     go install github.com/haya14busa/goplay/cmd/goplay@v1 && \
