@@ -33,7 +33,9 @@
 		// https://code.visualstudio.com/docs/remote/containers-advanced#_persist-bash-history-between-runs
 		// keep bash history
 		"source=projectname-bashhistory,target=/commandhistory,type=volume",
+		// Cache go module artifacts
+		"source=go-module-cache,target=/home/yenlinc/go/pkg/mod,type=volume",
 		// Get AWS creds into the container from the host
-		"source=${localEnv:HOME}/.aws,target=/home/yenlinc/.aws,type=bind",
+		"source=${localEnv:HOME}/.aws,target=/home/yenlinc/.aws,type=bind"
 	]
 }

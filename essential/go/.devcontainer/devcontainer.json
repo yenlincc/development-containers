@@ -29,9 +29,11 @@
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "yenlinc",
 
-	// https://code.visualstudio.com/docs/remote/containers-advanced#_persist-bash-history-between-runs
-	// keep bash history
 	"mounts": [
-		"source=projectname-bashhistory,target=/commandhistory,type=volume"
+		// https://code.visualstudio.com/docs/remote/containers-advanced#_persist-bash-history-between-runs
+		// keep bash history
+		"source=projectname-bashhistory,target=/commandhistory,type=volume",
+		// Cache go module artifacts
+		"source=go-module-cache,target=/home/yenlinc/go/pkg/mod,type=volume"
 	]
 }
