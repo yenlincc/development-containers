@@ -12,6 +12,9 @@ on:
 jobs:
   # https://github.com/marketplace/actions/build-and-push-docker-images
   multi-registries:
+    # Note: Because latter steps depends on the `dev` version of an earlier step
+    # , if you cancel the GitHub Action workflow for dev, it's possible that
+    # the resulting images might not be built from the latest base image.
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
