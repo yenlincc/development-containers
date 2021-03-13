@@ -15,5 +15,5 @@ RUN sudo wget https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
     go install github.com/josharian/impl@v1 && \
     go install github.com/haya14busa/goplay/cmd/goplay@v1 && \
     go install github.com/go-delve/delve/cmd/dlv@v1 && \
-    go install golang.org/x/lint/golint@latest && \
+    go install honnef.co/go/tools/cmd/staticcheck@v0 && \
     go install golang.org/x/tools/gopls@v0
