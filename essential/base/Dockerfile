@@ -36,4 +36,5 @@ RUN curl -fsSL https://starship.rs/install.sh | bash -s -- --yes \
     && sudo mkdir /commandhistory \
     && sudo touch /commandhistory/.bash_history \
     && sudo chown -R $USERNAME /commandhistory \
-    && echo $SNIPPET >> "/home/$USERNAME/.bashrc"
+    && echo $SNIPPET >> "/home/$USERNAME/.bashrc" \
+    && echo 'eval "$(starship init bash)"' >> "/home/$USERNAME/.bashrc"
