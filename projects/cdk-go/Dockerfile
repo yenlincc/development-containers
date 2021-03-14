@@ -17,5 +17,5 @@ RUN sudo apt-get update \
     && sudo unzip awscliv2.zip \
     && sudo ./aws/install \
     && sudo rm -r awscliv2.zip ./aws \
-    && sudo DEBIAN_FRONTEND=noninteractive apt-get remove unzip \
+    && sudo DEBIAN_FRONTEND=noninteractive apt-get purge -y unzip \
     && aws --version && cdk --version
