@@ -9,4 +9,8 @@ RUN sudo apt-get update \
     && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends nodejs \
     && node -v && npm -v \
     && sudo npm install -g aws-cdk aws-cdk-local \
-    && cdk --version
+    && sudo curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    && sudo unzip awscliv2.zip \
+    && sudo ./aws/install \
+    && sudo rm -r awscliv2.zip ./aws \
+    && aws --version && cdk --version
