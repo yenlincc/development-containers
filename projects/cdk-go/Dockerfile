@@ -4,7 +4,11 @@ FROM thinkthenrant/development-container-go:dev
 RUN sudo apt-get update \
     && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
     # needed by the nodejs installer
-    gnupg unzip \
+    gnupg \
+    # need to unzip aws cli v2
+    unzip \
+    # less is needed by aws cli v2
+    less \
     && sudo DEBIAN_FRONTEND=noninteractive curl -sL https://deb.nodesource.com/setup_14.x  | sudo DEBIAN_FRONTEND=noninteractive bash - \
     && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends nodejs \
     && node -v && npm -v \
@@ -13,4 +17,5 @@ RUN sudo apt-get update \
     && sudo unzip awscliv2.zip \
     && sudo ./aws/install \
     && sudo rm -r awscliv2.zip ./aws \
+    && sudo DEBIAN_FRONTEND=noninteractive apt-get remove unzip \
     && aws --version && cdk --version
