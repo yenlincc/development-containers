@@ -23,7 +23,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
     # the remaining `apt-get install commands`:
     # http://lenguyenthedat.com/docker-cache/
     && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
-    vim git curl ca-certificates build-essential
+    vim git curl ca-certificates build-essential git-lfs
 
 USER $USERNAME
 RUN curl -fsSL https://starship.rs/install.sh | bash -s -- --yes \
