@@ -1,7 +1,7 @@
 FROM thinkthenrant/development-container-base:dev
 
 ENV PATH /usr/local/go/bin:$PATH
-ARG GO_VERSION=1.16.2
+ARG GO_VERSION=1.16.3
 ARG MOCKERY_VERSION=2.5.1
 RUN sudo apt-get update \
     # https://www.petefreitag.com/item/877.cfm
