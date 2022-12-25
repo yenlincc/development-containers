@@ -1,6 +1,7 @@
-FROM thinkthenrant/development-container-go:dev
+# The following image should've already been built by GitHub Action
+# in an earlier step before attempting to build this Dockerfile
+FROM thinkthenrant/development-container-go:for-auto-build
 
-# https://rustc-dev-guide.rust-lang.org/building/prerequisites.html
 RUN sudo apt-get update \
     && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
     # needed by the nodejs installer

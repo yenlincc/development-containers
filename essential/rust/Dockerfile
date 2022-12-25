@@ -1,4 +1,6 @@
-FROM thinkthenrant/development-container-base:dev
+# The following image should've already been built by GitHub Action
+# in an earlier step before attempting to build this Dockerfile
+FROM thinkthenrant/development-container-base:for-auto-build
 
 RUN sudo apt-get update \
     # https://www.petefreitag.com/item/877.cfm

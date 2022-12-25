@@ -1,4 +1,6 @@
-FROM thinkthenrant/development-container-rust:dev
+# The following image should've already been built by GitHub Action
+# in an earlier step before attempting to build this Dockerfile
+FROM thinkthenrant/development-container-rust:for-auto-build
 
 # https://rustc-dev-guide.rust-lang.org/building/prerequisites.html
 RUN sudo apt-get update \

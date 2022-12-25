@@ -55,6 +55,7 @@ jobs:
           tags: |
             type=semver,pattern={{raw}}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'dev') }}
+            type=raw,value=for-auto-build
             type=sha
       - name: Build and push the ylc_base image
         uses: docker/build-push-action@v3
@@ -79,6 +80,7 @@ jobs:
           tags: |
             type=semver,pattern={{raw}}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'dev') }}
+            type=raw,value=for-auto-build
             type=sha
       - name: Build and push ylc_rust
         uses: docker/build-push-action@v3
@@ -102,6 +104,7 @@ jobs:
           tags: |
             type=semver,pattern={{raw}}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'dev') }}
+            type=raw,value=for-auto-build
             type=sha
       - name: Build and push ylc_go
         uses: docker/build-push-action@v3
@@ -125,6 +128,7 @@ jobs:
           tags: |
             type=semver,pattern={{raw}}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'dev') }}
+            type=raw,value=for-auto-build
             type=sha
       - name: Build and push ylc_cdk-go
         uses: docker/build-push-action@v3
@@ -148,6 +152,7 @@ jobs:
           tags: |
             type=semver,pattern={{raw}}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'dev') }}
+            type=raw,value=for-auto-build
             type=sha
       - name: Build and push ylc_rust-lang_rust
         uses: docker/build-push-action@v3
@@ -160,22 +165,3 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker_meta_ylc_rust-lang_rust.outputs.tags }}
           labels: ${{ steps.docker_meta_ylc_rust-lang_rust.outputs.labels }}
-
-      ## This is taking too long to build and is unused. Commented out for now.
-      # - name: Docker meta for the ylc_bottlerocket-os_bottlerocket image
-      #   id: docker_meta_ylc_bottlerocket-os_bottlerocket
-      #   uses: crazy-max/ghaction-docker-meta@v1
-      #   with:
-      #     images: yenlincc/development-container_bottlerocket-os_bottlerocket,ghcr.io/yenlincc/development-container_bottlerocket-os_bottlerocket
-      #     tag-sha: true
-      # - name: Build and push ylc_bottlerocket-os_bottlerocket
-      #   uses: docker/build-push-action@v3
-      #   with:
-      #     context: .
-      #     file: ./projects/bottlerocket-os/bottlerocket/Dockerfile
-      #     platforms: linux/amd64
-      #     cache-from: type=local,src=/tmp/.buildx-cache
-      #     cache-to: type=local,dest=/tmp/.buildx-cache
-      #     push: ${{ github.event_name != 'pull_request' }}
-      #     tags: ${{ steps.docker_meta_ylc_bottlerocket-os_bottlerocket.outputs.tags }}
-      #     labels: ${{ steps.docker_meta_ylc_bottlerocket-os_bottlerocket.outputs.labels }}
