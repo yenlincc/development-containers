@@ -1,6 +1,6 @@
 # The following image should've already been built by GitHub Action
 # in an earlier step before attempting to build this Dockerfile
-FROM yenlincc/development-container-go:for-auto-build
+FROM ghcr.io/yenlincc/development-container-go:for-auto-build
 
 RUN sudo apt-get update \
     && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
