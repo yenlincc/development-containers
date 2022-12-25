@@ -5,6 +5,7 @@ FROM ghcr.io/yenlincc/development-container-base:for-auto-build
 ENV PATH /usr/local/go/bin:$PATH
 ARG GO_VERSION=1.19.4
 ARG MOCKERY_VERSION=2.16.0
+# Ref: https://docs.docker.com/engine/reference/builder/#automatic-platform-args-in-the-global-scope
 ARG TARGETOS
 ARG TARGETARCH
 RUN sudo apt-get update \
