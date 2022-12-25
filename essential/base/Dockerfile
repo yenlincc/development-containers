@@ -26,7 +26,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
     vim git curl ca-certificates build-essential git-lfs
 
 USER $USERNAME
-RUN curl -fsSL https://starship.rs/install.sh | bash -s -- --yes
+RUN curl -fsSL https://starship.rs/install.sh | sh -s --yes
 RUN git config --global core.editor "vim" \
     && git config --global user.email "3822365+hencrice@users.noreply.github.com" \
     && git config --global user.name "Yenlin Chen"
