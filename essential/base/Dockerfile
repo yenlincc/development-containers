@@ -26,13 +26,13 @@ RUN groupadd --gid $USER_GID $USERNAME \
     vim git curl ca-certificates build-essential git-lfs
 
 USER $USERNAME
-RUN curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
-RUN git config --global core.editor "vim" \
+RUN curl -fsSL https://starship.rs/install.sh | sh -s -- --yes \
+    && git config --global core.editor "vim" \
     && git config --global user.email "3822365+hencrice@users.noreply.github.com" \
-    && git config --global user.name "Yenlin Chen"
+    && git config --global user.name "Yenlin Chen" \
     #
     # https://code.visualstudio.com/docs/remote/containers-advanced#_persist-bash-history-between-runs
-RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
+    && SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
     && sudo mkdir /commandhistory \
     && sudo touch /commandhistory/.bash_history \
     && sudo chown -R $USERNAME /commandhistory \
