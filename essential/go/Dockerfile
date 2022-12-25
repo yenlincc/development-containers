@@ -16,9 +16,9 @@ RUN sudo wget https://golang.org/dl/go${GO_VERSION}.${TARGETOS}-${TARGETARCH}.ta
     sudo tar -C /usr/local -xzf go${GO_VERSION}.${TARGETOS}-${TARGETARCH}.tar.gz && \
     sudo rm go${GO_VERSION}.${TARGETOS}-${TARGETARCH}.tar.gz && \
     if [ "${TARGETARCH}" = 'amd64' ]; then \
-        MOCKERY_ARCH='x86_64' \
+        MOCKERY_ARCH='x86_64'; \
     else \
-        MOCKERY_ARCH="${TARGETARCH}" \
+        MOCKERY_ARCH="${TARGETARCH}"; \
     fi \
     # https://stackoverflow.com/questions/12487424/uppercase-first-character-in-a-variable-with-bash
     sudo wget https://github.com/vektra/mockery/releases/download/v${MOCKERY_VERSION}/mockery_${MOCKERY_VERSION}_${TARGETOS^}_${MOCKERY_ARCH}.tar.gz && \

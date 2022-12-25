@@ -18,9 +18,9 @@ RUN sudo apt-get update \
     && node -v && npm -v \
     && sudo npm install -g aws-cdk-lib aws-cdk-local \
     if [ "${TARGETARCH}" = 'amd64' ]; then \
-        CLI_ARCH='x86_64' \
+        CLI_ARCH='x86_64'; \
     elif [ "${TARGETARCH}" = 'arm64' ] \
-        CLI_ARCH='aarch64' \
+        CLI_ARCH='aarch64'; \
     fi \
     && sudo curl "https://awscli.amazonaws.com/awscli-exe-${TARGETOS}-${CLI_ARCH}.zip" -o "awscliv2.zip" \
     && sudo unzip awscliv2.zip \
