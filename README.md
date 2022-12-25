@@ -7,7 +7,7 @@ A basic linux environment based on Ubuntu 20.04. This is the base image for the 
 ## essential/rust
 A development environment for Rust projects
 
-## essential/rust
+## essential/go
 A development environment for Go projects
 ## projects/rust-lang/rust
 A development environment for the Rust language itself
