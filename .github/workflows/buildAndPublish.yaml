@@ -18,41 +18,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
         # https://github.com/docker/setup-buildx-action#inputs
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Cache Docker layers
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
       - name: Login to DockerHub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Docker meta for the ylc_base image
-        # https://github.com/marketplace/actions/docker-meta#keep-up-to-date-with-github-dependabot
-        id: docker_meta_ylc_base
-        uses: crazy-max/ghaction-docker-meta@v1
-        with:
-          # list of Docker images to use as base name for tags
-          images: yenlincc/development-container-base,ghcr.io/yenlincc/development-container-base
-          tag-sha: true # add git short SHA as Docker tag
       - name: Build and push the ylc_base image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .
           file: ./essential/base/Dockerfile
@@ -60,17 +52,10 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.docker_meta_ylc_base.outputs.tags }}
-          labels: ${{ steps.docker_meta_ylc_base.outputs.labels }}
+          tags: yenlincc/development-container-base,ghcr.io/yenlincc/development-container-base
 
-      - name: Docker meta for the ylc_rust image
-        id: docker_meta_ylc_rust
-        uses: crazy-max/ghaction-docker-meta@v1
-        with:
-          images: yenlincc/development-container-rust,ghcr.io/yenlincc/development-container-rust
-          tag-sha: true
       - name: Build and push ylc_rust
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .
           file: ./essential/rust/Dockerfile
@@ -78,17 +63,10 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.docker_meta_ylc_rust.outputs.tags }}
-          labels: ${{ steps.docker_meta_ylc_rust.outputs.labels }}
-      
-      - name: Docker meta for the ylc_go image
-        id: docker_meta_ylc_go
-        uses: crazy-max/ghaction-docker-meta@v1
-        with:
-          images: yenlincc/development-container-go,ghcr.io/yenlincc/development-container-go
-          tag-sha: true
+          tags: yenlincc/development-container-rust,ghcr.io/yenlincc/development-container-rust
+
       - name: Build and push ylc_go
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .
           file: ./essential/go/Dockerfile
@@ -96,17 +74,10 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.docker_meta_ylc_go.outputs.tags }}
-          labels: ${{ steps.docker_meta_ylc_go.outputs.labels }}
-      
-      - name: Docker meta for the ylc_cdk-go image
-        id: docker_meta_ylc_cdk-go
-        uses: crazy-max/ghaction-docker-meta@v1
-        with:
-          images: yenlincc/development-container_cdk-go,ghcr.io/yenlincc/development-container_cdk-go
-          tag-sha: true
+          tags: yenlincc/development-container-go,ghcr.io/yenlincc/development-container-go
+
       - name: Build and push ylc_cdk-go
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .
           file: ./projects/cdk-go/Dockerfile
@@ -114,17 +85,10 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.docker_meta_ylc_cdk-go.outputs.tags }}
-          labels: ${{ steps.docker_meta_ylc_cdk-go.outputs.labels }}
+          tags: yenlincc/development-container_cdk-go,ghcr.io/yenlincc/development-container_cdk-go
 
-      - name: Docker meta for the ylc_rust-lang_rust image
-        id: docker_meta_ylc_rust-lang_rust
-        uses: crazy-max/ghaction-docker-meta@v1
-        with:
-          images: yenlincc/development-container_rust-lang_rust,ghcr.io/yenlincc/development-container_rust-lang_rust
-          tag-sha: true
       - name: Build and push ylc_rust-lang_rust
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .
           file: ./projects/rust-lang/rust/Dockerfile
@@ -132,8 +96,7 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.docker_meta_ylc_rust-lang_rust.outputs.tags }}
-          labels: ${{ steps.docker_meta_ylc_rust-lang_rust.outputs.labels }}
+          tags: yenlincc/development-container_rust-lang_rust,ghcr.io/yenlincc/development-container_rust-lang_rust
 
       ## This is taking too long to build and is unused. Commented out for now.
       # - name: Docker meta for the ylc_bottlerocket-os_bottlerocket image
@@ -143,7 +106,7 @@ jobs:
       #     images: yenlincc/development-container_bottlerocket-os_bottlerocket,ghcr.io/yenlincc/development-container_bottlerocket-os_bottlerocket
       #     tag-sha: true
       # - name: Build and push ylc_bottlerocket-os_bottlerocket
-      #   uses: docker/build-push-action@v2
+      #   uses: docker/build-push-action@v3
       #   with:
       #     context: .
       #     file: ./projects/bottlerocket-os/bottlerocket/Dockerfile
