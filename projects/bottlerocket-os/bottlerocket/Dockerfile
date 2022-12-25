@@ -1,4 +1,4 @@
-FROM thinkthenrant/development-container-rust:dev
+FROM yenlincc/development-container-rust:dev
 
 RUN sudo apt-get update \
     && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \

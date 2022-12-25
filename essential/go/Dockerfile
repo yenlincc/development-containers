@@ -1,6 +1,6 @@
 # The following image should've already been built by GitHub Action
 # in an earlier step before attempting to build this Dockerfile
-FROM thinkthenrant/development-container-base:for-auto-build
+FROM yenlincc/development-container-base:for-auto-build
 
 ENV PATH /usr/local/go/bin:$PATH
 ARG GO_VERSION=1.16.3

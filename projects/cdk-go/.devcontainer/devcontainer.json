@@ -2,7 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.134.1/containers/rust
 {
 	"name": "ylc_cdk-go",
-	"image": "thinkthenrant/development-container_cdk-go:latest",
+	"image": "yenlincc/development-container_cdk-go:latest",
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 

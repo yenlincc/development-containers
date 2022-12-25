@@ -2,7 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.134.1/containers/rust
 {
 	"name": "ylc_bottlerocket-os_bottlerocket",
-	"image": "thinkthenrant/development-container_bottlerocket-os_bottlerocket:latest",
+	"image": "yenlincc/development-container_bottlerocket-os_bottlerocket:latest",
 	"runArgs": [ "--runtime=sysbox-runc"],
 
 	// Set *default* container specific settings.json values on container create.

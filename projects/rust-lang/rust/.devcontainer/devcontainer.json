@@ -2,7 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.134.1/containers/rust
 {
 	"name": "ylc_rust-lang_rust",
-	"image": "thinkthenrant/development-container_rust-lang_rust:latest",
+	"image": "yenlincc/development-container_rust-lang_rust:latest",
 	"runArgs": [ "--runtime=sysbox-runc" ],
 
 	// Set *default* container specific settings.json values on container create.
