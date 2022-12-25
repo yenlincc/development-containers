@@ -92,13 +92,13 @@ jobs:
           tags: ${{ steps.docker_meta_ylc_rust.outputs.tags }}
           labels: ${{ steps.docker_meta_ylc_rust.outputs.labels }}
 
-      - name: Docker meta for the ylc_cdk-go image
-        id: docker_meta_ylc_cdk-go
+      - name: Docker meta for the ylc_go image
+        id: docker_meta_ylc_go
         uses: docker/metadata-action@v4
         with:
           images: |
-            yenlincc/development-container_cdk-go
-            ghcr.io/yenlincc/development-container_cdk-go
+            yenlincc/development-container-go
+            ghcr.io/yenlincc/development-container-go
           tags: |
             type=semver,pattern={{raw}}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'dev') }}
