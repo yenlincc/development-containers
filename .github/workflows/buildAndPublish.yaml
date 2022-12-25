@@ -46,7 +46,7 @@ jobs:
       - name: Docker meta for the ylc_base image
         # https://github.com/marketplace/actions/docker-meta#keep-up-to-date-with-github-dependabot
         id: docker_meta_ylc_base
-        uses: crazy-max/ghaction-docker-meta@v1
+        uses: crazy-max/ghaction-docker-meta@v4
         with:
           # list of Docker images to use as base name for tags
           images: yenlincc/development-container-base,ghcr.io/yenlincc/development-container-base
@@ -65,7 +65,7 @@ jobs:
 
       - name: Docker meta for the ylc_rust image
         id: docker_meta_ylc_rust
-        uses: crazy-max/ghaction-docker-meta@v1
+        uses: crazy-max/ghaction-docker-meta@v4
         with:
           images: yenlincc/development-container-rust,ghcr.io/yenlincc/development-container-rust
           tag-sha: true
@@ -83,7 +83,7 @@ jobs:
       
       - name: Docker meta for the ylc_go image
         id: docker_meta_ylc_go
-        uses: crazy-max/ghaction-docker-meta@v1
+        uses: crazy-max/ghaction-docker-meta@v4
         with:
           images: yenlincc/development-container-go,ghcr.io/yenlincc/development-container-go
           tag-sha: true
@@ -101,7 +101,7 @@ jobs:
       
       - name: Docker meta for the ylc_cdk-go image
         id: docker_meta_ylc_cdk-go
-        uses: crazy-max/ghaction-docker-meta@v1
+        uses: crazy-max/ghaction-docker-meta@v4
         with:
           images: yenlincc/development-container_cdk-go,ghcr.io/yenlincc/development-container_cdk-go
           tag-sha: true
@@ -119,7 +119,7 @@ jobs:
 
       - name: Docker meta for the ylc_rust-lang_rust image
         id: docker_meta_ylc_rust-lang_rust
-        uses: crazy-max/ghaction-docker-meta@v1
+        uses: crazy-max/ghaction-docker-meta@v4
         with:
           images: yenlincc/development-container_rust-lang_rust,ghcr.io/yenlincc/development-container_rust-lang_rust
           tag-sha: true
@@ -138,7 +138,7 @@ jobs:
       ## This is taking too long to build and is unused. Commented out for now.
       # - name: Docker meta for the ylc_bottlerocket-os_bottlerocket image
       #   id: docker_meta_ylc_bottlerocket-os_bottlerocket
-      #   uses: crazy-max/ghaction-docker-meta@v1
+      #   uses: crazy-max/ghaction-docker-meta@v4
       #   with:
       #     images: yenlincc/development-container_bottlerocket-os_bottlerocket,ghcr.io/yenlincc/development-container_bottlerocket-os_bottlerocket
       #     tag-sha: true
