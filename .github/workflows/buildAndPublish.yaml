@@ -41,7 +41,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.THINK_THEN_RANT_CONTAINER_REGISTRY_TOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Docker meta for the ylc_base image
         # https://github.com/marketplace/actions/docker-meta#keep-up-to-date-with-github-dependabot
@@ -49,7 +49,7 @@ jobs:
         uses: crazy-max/ghaction-docker-meta@v1
         with:
           # list of Docker images to use as base name for tags
-          images: thinkthenrant/development-container-base,ghcr.io/thinkthenrant/development-container-base
+          images: yenlincc/development-container-base,ghcr.io/yenlincc/development-container-base
           tag-sha: true # add git short SHA as Docker tag
       - name: Build and push the ylc_base image
         uses: docker/build-push-action@v2
@@ -67,7 +67,7 @@ jobs:
         id: docker_meta_ylc_rust
         uses: crazy-max/ghaction-docker-meta@v1
         with:
-          images: thinkthenrant/development-container-rust,ghcr.io/thinkthenrant/development-container-rust
+          images: yenlincc/development-container-rust,ghcr.io/yenlincc/development-container-rust
           tag-sha: true
       - name: Build and push ylc_rust
         uses: docker/build-push-action@v2
@@ -85,7 +85,7 @@ jobs:
         id: docker_meta_ylc_go
         uses: crazy-max/ghaction-docker-meta@v1
         with:
-          images: thinkthenrant/development-container-go,ghcr.io/thinkthenrant/development-container-go
+          images: yenlincc/development-container-go,ghcr.io/yenlincc/development-container-go
           tag-sha: true
       - name: Build and push ylc_go
         uses: docker/build-push-action@v2
@@ -103,7 +103,7 @@ jobs:
         id: docker_meta_ylc_cdk-go
         uses: crazy-max/ghaction-docker-meta@v1
         with:
-          images: thinkthenrant/development-container_cdk-go,ghcr.io/thinkthenrant/development-container_cdk-go
+          images: yenlincc/development-container_cdk-go,ghcr.io/yenlincc/development-container_cdk-go
           tag-sha: true
       - name: Build and push ylc_cdk-go
         uses: docker/build-push-action@v2
@@ -121,7 +121,7 @@ jobs:
         id: docker_meta_ylc_rust-lang_rust
         uses: crazy-max/ghaction-docker-meta@v1
         with:
-          images: thinkthenrant/development-container_rust-lang_rust,ghcr.io/thinkthenrant/development-container_rust-lang_rust
+          images: yenlincc/development-container_rust-lang_rust,ghcr.io/yenlincc/development-container_rust-lang_rust
           tag-sha: true
       - name: Build and push ylc_rust-lang_rust
         uses: docker/build-push-action@v2
@@ -140,7 +140,7 @@ jobs:
       #   id: docker_meta_ylc_bottlerocket-os_bottlerocket
       #   uses: crazy-max/ghaction-docker-meta@v1
       #   with:
-      #     images: thinkthenrant/development-container_bottlerocket-os_bottlerocket,ghcr.io/thinkthenrant/development-container_bottlerocket-os_bottlerocket
+      #     images: yenlincc/development-container_bottlerocket-os_bottlerocket,ghcr.io/yenlincc/development-container_bottlerocket-os_bottlerocket
       #     tag-sha: true
       # - name: Build and push ylc_bottlerocket-os_bottlerocket
       #   uses: docker/build-push-action@v2
