@@ -3,8 +3,8 @@
 FROM ghcr.io/yenlincc/development-container-base:for-auto-build
 
 ENV PATH /usr/local/go/bin:$PATH
-ARG GO_VERSION=1.16.3
-ARG MOCKERY_VERSION=2.5.1
+ARG GO_VERSION=1.19.4
+ARG MOCKERY_VERSION=2.16.0
 ARG TARGETOS
 ARG TARGETARCH
 RUN sudo apt-get update \
