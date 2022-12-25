@@ -62,7 +62,9 @@ jobs:
         with:
           context: .
           file: ./essential/base/Dockerfile
-          platforms: linux/amd64
+          platforms: |
+            linux/amd64
+            linux/arm64
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           push: ${{ github.event_name != 'pull_request' }}
@@ -87,7 +89,9 @@ jobs:
         with:
           context: .
           file: ./essential/rust/Dockerfile
-          platforms: linux/amd64
+          platforms: |
+            linux/amd64
+            linux/arm64
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           push: ${{ github.event_name != 'pull_request' }}
@@ -111,7 +115,9 @@ jobs:
         with:
           context: .
           file: ./essential/go/Dockerfile
-          platforms: linux/amd64
+          platforms: |
+            linux/amd64
+            linux/arm64
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           push: ${{ github.event_name != 'pull_request' }}
@@ -135,7 +141,9 @@ jobs:
         with:
           context: .
           file: ./projects/cdk-go/Dockerfile
-          platforms: linux/amd64
+          platforms: |
+            linux/amd64
+            linux/arm64
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           push: ${{ github.event_name != 'pull_request' }}
@@ -159,7 +167,9 @@ jobs:
         with:
           context: .
           file: ./projects/rust-lang/rust/Dockerfile
-          platforms: linux/amd64
+          platforms: |
+            linux/amd64
+            linux/arm64
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           push: ${{ github.event_name != 'pull_request' }}
