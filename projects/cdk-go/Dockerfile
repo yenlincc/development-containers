@@ -16,6 +16,7 @@ RUN sudo apt-get update \
     && sudo DEBIAN_FRONTEND=noninteractive curl -sL https://deb.nodesource.com/setup_14.x  | sudo DEBIAN_FRONTEND=noninteractive bash - \
     && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends nodejs \
     && node -v && npm -v \
+    # aws-cdk is still needed as it provides the cdk command after installation
     && sudo npm install -g constructs aws-cdk aws-cdk-lib aws-cdk-local && \
     if [ "${TARGETARCH}" = 'amd64' ]; then \
         CLI_ARCH='x86_64'; \
