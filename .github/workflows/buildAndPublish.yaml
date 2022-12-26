@@ -36,90 +36,90 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Docker meta for the ylc_base image
-      #   id: docker_meta_ylc_base
-      #   uses: docker/metadata-action@v4
-      #   with:
-      #     # list of Docker images to use as base name for tags
-      #     images: |
-      #       yenlincc/development-container-base
-      #       ghcr.io/yenlincc/development-container-base
-      #     # https://github.com/docker/metadata-action#latest-tag
-      #     tags: |
-      #       type=semver,pattern={{raw}}
-      #       type=raw,value=latest,enable=${{ startsWith(github.ref, 'refs/tags/v') }}
-      #       type=raw,value=for-auto-build
-      #       type=sha
-      #       type=schedule,pattern=nightly
-      # - name: Build and push the ylc_base image
-      #   uses: docker/build-push-action@v3
-      #   with:
-      #     context: .
-      #     file: ./essential/base/Dockerfile
-      #     platforms: |
-      #       linux/amd64
-      #       linux/arm64
-      #     # Ref: https://github.com/moby/buildkit#github-actions-cache-experimental
-      #     cache-from: type=gha
-      #     cache-to: type=gha,mode=max
-      #     push: ${{ github.event_name != 'pull_request' }}
-      #     tags: ${{ steps.docker_meta_ylc_base.outputs.tags }}
-      #     labels: ${{ steps.docker_meta_ylc_base.outputs.labels }}
+      - name: Docker meta for the ylc_base image
+        id: docker_meta_ylc_base
+        uses: docker/metadata-action@v4
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            yenlincc/development-container-base
+            ghcr.io/yenlincc/development-container-base
+          # https://github.com/docker/metadata-action#latest-tag
+          tags: |
+            type=semver,pattern={{raw}}
+            type=raw,value=latest,enable=${{ startsWith(github.ref, 'refs/tags/v') }}
+            type=raw,value=for-auto-build
+            type=sha
+            type=schedule,pattern=nightly
+      - name: Build and push the ylc_base image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./essential/base/Dockerfile
+          platforms: |
+            linux/amd64
+            linux/arm64
+          # Ref: https://github.com/moby/buildkit#github-actions-cache-experimental
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.docker_meta_ylc_base.outputs.tags }}
+          labels: ${{ steps.docker_meta_ylc_base.outputs.labels }}
 
-      # - name: Docker meta for the ylc_rust image
-      #   id: docker_meta_ylc_rust
-      #   uses: docker/metadata-action@v4
-      #   with:
-      #     images: |
-      #       yenlincc/development-container-rust
-      #       ghcr.io/yenlincc/development-container-rust
-      #     # https://github.com/docker/metadata-action#latest-tag
-      #     tags: |
-      #       type=semver,pattern={{raw}}
-      #       type=raw,value=latest,enable=${{ startsWith(github.ref, 'refs/tags/v') }}
-      #       type=raw,value=for-auto-build
-      #       type=sha
-      #       type=schedule,pattern=nightly
-      # - name: Build and push ylc_rust
-      #   uses: docker/build-push-action@v3
-      #   with:
-      #     context: .
-      #     file: ./essential/rust/Dockerfile
-      #     platforms: |
-      #       linux/amd64
-      #       linux/arm64
-      #     cache-from: type=gha
-      #     cache-to: type=gha,mode=max
-      #     push: ${{ github.event_name != 'pull_request' }}
-      #     tags: ${{ steps.docker_meta_ylc_rust.outputs.tags }}
-      #     labels: ${{ steps.docker_meta_ylc_rust.outputs.labels }}
+      - name: Docker meta for the ylc_rust image
+        id: docker_meta_ylc_rust
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            yenlincc/development-container-rust
+            ghcr.io/yenlincc/development-container-rust
+          # https://github.com/docker/metadata-action#latest-tag
+          tags: |
+            type=semver,pattern={{raw}}
+            type=raw,value=latest,enable=${{ startsWith(github.ref, 'refs/tags/v') }}
+            type=raw,value=for-auto-build
+            type=sha
+            type=schedule,pattern=nightly
+      - name: Build and push ylc_rust
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./essential/rust/Dockerfile
+          platforms: |
+            linux/amd64
+            linux/arm64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.docker_meta_ylc_rust.outputs.tags }}
+          labels: ${{ steps.docker_meta_ylc_rust.outputs.labels }}
 
-      # - name: Docker meta for the ylc_go image
-      #   id: docker_meta_ylc_go
-      #   uses: docker/metadata-action@v4
-      #   with:
-      #     images: |
-      #       yenlincc/development-container-go
-      #       ghcr.io/yenlincc/development-container-go
-      #     tags: |
-      #       type=semver,pattern={{raw}}
-      #       type=raw,value=latest,enable=${{ startsWith(github.ref, 'refs/tags/v') }}
-      #       type=raw,value=for-auto-build
-      #       type=sha
-      #       type=schedule,pattern=nightly
-      # - name: Build and push ylc_go
-      #   uses: docker/build-push-action@v3
-      #   with:
-      #     context: .
-      #     file: ./essential/go/Dockerfile
-      #     platforms: |
-      #       linux/amd64
-      #       linux/arm64
-      #     cache-from: type=gha
-      #     cache-to: type=gha,mode=max
-      #     push: ${{ github.event_name != 'pull_request' }}
-      #     tags: ${{ steps.docker_meta_ylc_go.outputs.tags }}
-      #     labels: ${{ steps.docker_meta_ylc_go.outputs.labels }}
+      - name: Docker meta for the ylc_go image
+        id: docker_meta_ylc_go
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            yenlincc/development-container-go
+            ghcr.io/yenlincc/development-container-go
+          tags: |
+            type=semver,pattern={{raw}}
+            type=raw,value=latest,enable=${{ startsWith(github.ref, 'refs/tags/v') }}
+            type=raw,value=for-auto-build
+            type=sha
+            type=schedule,pattern=nightly
+      - name: Build and push ylc_go
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./essential/go/Dockerfile
+          platforms: |
+            linux/amd64
+            linux/arm64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.docker_meta_ylc_go.outputs.tags }}
+          labels: ${{ steps.docker_meta_ylc_go.outputs.labels }}
 
       - name: Docker meta for the ylc_cdk-go image
         id: docker_meta_ylc_cdk-go
