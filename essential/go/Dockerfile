@@ -19,9 +19,9 @@ RUN if [ "${TARGETARCH}" = 'amd64' ]; then \
         MOCKERY_ARCH='x86_64'; \
     else \
         MOCKERY_ARCH="${TARGETARCH}"; \
-    fi
+    fi && \
     # https://stackoverflow.com/questions/12487424/uppercase-first-character-in-a-variable-with-bash
-RUN sudo wget https://github.com/vektra/mockery/releases/download/v${MOCKERY_VERSION}/mockery_${MOCKERY_VERSION}_${TARGETOS^}_${MOCKERY_ARCH}.tar.gz && \
+    sudo wget https://github.com/vektra/mockery/releases/download/v${MOCKERY_VERSION}/mockery_${MOCKERY_VERSION}_${TARGETOS^}_${MOCKERY_ARCH}.tar.gz && \
     sudo tar -C /usr/local/bin -xzf mockery_${MOCKERY_VERSION}_${TARGETOS^}_${MOCKERY_ARCH}.tar.gz && \
     sudo rm mockery_${MOCKERY_VERSION}_${TARGETOS^}_${MOCKERY_ARCH}.tar.gz && \
     go install github.com/uudashr/gopkgs/cmd/gopkgs@v2 && \
