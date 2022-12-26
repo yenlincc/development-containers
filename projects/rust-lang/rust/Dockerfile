@@ -8,7 +8,7 @@ RUN sudo apt-get update \
     # dependency for Rustlang development
     build-essential \
     llvm \
-    python \
+    python3 \
     pkg-config \
     ninja-build \
     # some of Rust language development needs to be verified
