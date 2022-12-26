@@ -5,6 +5,7 @@ FROM ghcr.io/yenlincc/development-container-go:for-auto-build
 # Ref: https://docs.docker.com/engine/reference/builder/#automatic-platform-args-in-the-global-scope
 ARG TARGETOS
 ARG TARGETARCH
+ENV PATH /usr/local/lib/node_modules:$PATH
 RUN sudo apt-get update \
     && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
     # needed by the nodejs installer
@@ -28,4 +29,5 @@ RUN sudo apt-get update \
     && sudo rm -r awscliv2.zip ./aws \
     && sudo DEBIAN_FRONTEND=noninteractive apt-get purge -y unzip \
     && aws --version
+RUN npm list -g
 RUN cdk --version
