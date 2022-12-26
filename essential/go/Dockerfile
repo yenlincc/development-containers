@@ -14,8 +14,8 @@ RUN sudo apt-get update \
 RUN sudo wget https://golang.org/dl/go${GO_VERSION}.${TARGETOS}-${TARGETARCH}.tar.gz && \
     sudo rm -rf /usr/local/go && \
     sudo tar -C /usr/local -xzf go${GO_VERSION}.${TARGETOS}-${TARGETARCH}.tar.gz && \
-    sudo rm go${GO_VERSION}.${TARGETOS}-${TARGETARCH}.tar.gz
-RUN if [ "${TARGETARCH}" = 'amd64' ]; then \
+    sudo rm go${GO_VERSION}.${TARGETOS}-${TARGETARCH}.tar.gz && \
+    if [ "${TARGETARCH}" = 'amd64' ]; then \
         MOCKERY_ARCH='x86_64'; \
     else \
         MOCKERY_ARCH="${TARGETARCH}"; \
