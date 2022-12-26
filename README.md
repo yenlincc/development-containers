@@ -14,5 +14,3 @@ A development environment for the Rust language itself
 
 ## projects/cdk-go
 A development environment for AWS projects built using Go and deployed via CDK
-## projects/bottlerocket-os/bottlerocket
-Development environment for the Bottlerocket main repo
