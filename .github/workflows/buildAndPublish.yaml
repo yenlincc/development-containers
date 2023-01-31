@@ -52,7 +52,7 @@ jobs:
             type=sha
             type=schedule,pattern=nightly
       - name: Build and push the ylc_base image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: ./essential/base/Dockerfile
@@ -81,7 +81,7 @@ jobs:
             type=sha
             type=schedule,pattern=nightly
       - name: Build and push ylc_rust
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: ./essential/rust/Dockerfile
@@ -108,7 +108,7 @@ jobs:
             type=sha
             type=schedule,pattern=nightly
       - name: Build and push ylc_go
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: ./essential/go/Dockerfile
@@ -135,7 +135,7 @@ jobs:
             type=sha
             type=schedule,pattern=nightly
       - name: Build and push ylc_cdk-go
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: ./projects/cdk-go/Dockerfile
@@ -162,7 +162,7 @@ jobs:
             type=sha
             type=schedule,pattern=nightly
       - name: Build and push ylc_rust-lang_rust
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: ./projects/rust-lang/rust/Dockerfile
